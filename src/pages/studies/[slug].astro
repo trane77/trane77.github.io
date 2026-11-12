@@ -1,0 +1,18 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  return (await getCollection('studies')).map((s) => ({ params: { slug: s.id }, props: { study: s } }));
+}
+const { study } = Astro.props;
+const { Content } = await render(study);
+---
+<Base title={study.data.title} description={study.data.description}>
+  <a href="/studies/" class="text-sm text-zinc-500 hover:text-accent">← Studies</a>
+  <article class="prose prose-zinc dark:prose-invert prose-code:before:content-none prose-code:after:content-none prose-lg max-w-3xl mt-4">
+    <time class="text-sm text-zinc-500">{study.data.date.toLocaleDateString('en-GB', { dateStyle: 'long' })}</time>
+    <h1 transition:name={`study-${study.id}`}>{study.data.title}</h1>
+    <Content />
+  </article>
+</Base>

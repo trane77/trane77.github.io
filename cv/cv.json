@@ -1,0 +1,90 @@
+{
+  "name": "Federico Ricchiuto",
+  "title": "Full-Stack Developer",
+  "location": "Gallarate (VA) 21013, Italy",
+  "contacts": [
+    { "label": "f.ricchiuto@ital.dev", "url": "mailto:f.ricchiuto@ital.dev" },
+    { "label": "linkedin.com/in/federico-ricchiuto", "url": "https://www.linkedin.com/in/federico-ricchiuto" },
+    { "label": "github.com/trane77", "url": "https://github.com/trane77" }
+  ],
+  "summary": "Full-stack developer with over ten years building web applications, from consultancies serving multinational clients to my own practice for product companies. I work from the data model up — schema, domain logic, APIs, interface — and own the deployment pipelines that ship it. Recent engagements span a manufacturing enterprise platform, a healthcare API layer and a health-fund CRM modernized onto AWS, delivered in English with distributed teams.",
+  "highlight": "Relocating to the Greater Toronto Area.",
+  "skills": {
+    "Backend": ["PHP", "Laravel", "Symfony", "Java", "Spring Boot", "Node.js", "Python"],
+    "Frontend": ["TypeScript", "JavaScript", "Vue.js", "React", "Angular"],
+    "Databases & ORM": ["MySQL", "PostgreSQL", "MongoDB", "Redis", "Doctrine", "Eloquent"],
+    "Cloud & CI/CD": ["AWS", "Google Cloud Platform", "Docker", "Terraform", "GitHub Actions", "Jenkins"],
+    "Practices": ["REST API design", "Test Driven Development", "Microservices", "Agile Development", "Git Flow"],
+    "Additional": ["Spring Security", "Spring Data - Hibernate", "Flutter", "Android", "iOS"],
+    "AI agents": ["Claude Code", "OpenAI Codex", "Google Antigravity"]
+  },
+  "experience": [
+    {
+      "org": "Italdev",
+      "place": "Remote",
+      "role": "Independent Full-Stack Developer",
+      "period": "Jun 2019 –\npresent",
+      "summary": "Run my own consulting practice, delivering backend and full-stack work for product companies in manufacturing, healthcare, publishing and logistics. Take projects from data model to production, including the deployment pipelines that ship them.",
+      "clients": [
+        {
+          "name": "BKT Tires — Manufacturing",
+          "period": "Feb 2025 –\nSep 2026",
+          "text": "Delivered new features, refactored legacy modules and raised test coverage on the multi-tenant enterprise platform of a global tire manufacturer, used daily by internal teams across Europe, North America and Asia and by its B2C reseller network.",
+          "stack": "Laravel, PHP, Pest"
+        },
+        {
+          "name": "Kalpa — Healthcare",
+          "period": "Feb – Jun\n2024",
+          "text": "Designed and built the REST API layer of a healthcare application, with token-based authentication and a documented API contract the frontend team could use to work independently.",
+          "stack": "Laravel, Sanctum, OpenAPI/Swagger, Pest"
+        },
+        {
+          "name": "Heveloon — Health Fund CRM",
+          "period": "Jan 2022 –\nMay 2023",
+          "text": "Modernized a legacy CRM managing fund members and their payments. I replaced the authentication system end to end, introduced role-based access control across the platform, built batch processes for bulk payment runs, and moved document storage and the database onto encrypted AWS services.",
+          "stack": "Laminas (ex Zend), PHP, AWS S3 + KMS, Aurora, Lambda, ECS, SQS, SNS, Docker, Ext JS"
+        },
+        {
+          "name": "EmpireGroup — Sales Network CRM",
+          "period": "Jan 2016 –\npresent",
+          "text": "Developed a CRM tailored on customer's requests, for a multi-level sales network that grew from 5 agents to over 150 across agencies, divisions and teams. It dispatches appointments to the first available agent, calculates commissions, and gives each agent a personal calendar and dashboard to track their personal results.",
+          "stack": "PHP, Doctrine, MySQL, Vue.js"
+        },
+        {
+          "name": "Other Engagements",
+          "period": "Jan 2020 –\nApr 2022",
+          "text": "Delivered a digital newspaper distribution platform for a publishing group, a B2B/B2C marketplace, and a luggage pickup and delivery platform for the travel sector."
+        }
+      ]
+    },
+    {
+      "org": "Be Different",
+      "place": "Milan",
+      "role": "Java Developer",
+      "period": "Dec 2018 –\nMar 2019",
+      "summary": "Maintained a master-data management platform used by a major insurance company, and prototyped a hybrid mobile app that captured data from identity and business documents via OCR."
+    },
+    {
+      "org": "NTT DATA Italia / Sicis",
+      "place": "Milan",
+      "role": "Full-Stack Developer — Client: Docomo Digital",
+      "period": "Jun 2016 –\nDec 2018",
+      "summary": "Built and maintained backend and frontend of a mobile billing platform letting registered businesses sell services charged to end users' phone credit, with a role-based admin portal for refunds, subscriptions and account operations. Retained on the same engagement when NTT DATA hired me directly, across two and a half years working in English with teams distributed over Europe and Asia.",
+      "points": [
+        "Access control, views and roles implemented with Spring Security",
+        "Jenkins pipelines deploying across four environments — development, staging, pre-production and production — on globally distributed, load-balanced infrastructure"
+      ],
+      "stack": "Spring MVC, Tomcat, JBoss, MySQL, JSP + Apache Tiles, Backbone Marionette, Maven, npm, Grunt"
+    }
+  ],
+  "education": {
+    "title": "Technical Diploma",
+    "field": "Maintenance and Technical Assistance",
+    "details": "IIS Andrea Ponti, Gallarate, Italy, Jul 2015 · Final mark 90/100 · EQF Level 4"
+  },
+  "languages": [
+    { "name": "English", "level": "B2 (CEFR), IELTS scheduled for December 2026" },
+    { "name": "Italian", "level": "Native" }
+  ],
+  "interests": ["Amateur radio & SDR", "Electronics", "3D printing (FDM & resin)", "Pentesting", "DJing & electronic music production"]
+}

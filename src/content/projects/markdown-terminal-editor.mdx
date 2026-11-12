@@ -1,0 +1,36 @@
+---
+title: mdedit
+description: A Markdown editor for the terminal with live preview, scroll sync, GFM tables and alerts.
+repo: trane77/markdown-terminal-editor
+cover: https://raw.githubusercontent.com/trane77/markdown-terminal-editor/HEAD/docs/screenshot_1_index.png
+tags: [Rust, TUI]
+order: 1
+---
+import Gallery from '../../components/Gallery';
+
+mdedit is a Markdown editor that runs in the terminal. You write on the left and see the rendered
+document on the right, and the two panes scroll together line by line. It works on Linux, Windows and macOS.
+
+## Why
+
+Most terminal editors show Markdown as plain text with some colors. I wanted to *see* the document:
+big headings, real tables, images, while staying in the terminal over SSH.
+
+## Screenshots
+
+Click an image to enlarge it.
+
+<Gallery client:visible images={[
+  { src: 'https://raw.githubusercontent.com/trane77/markdown-terminal-editor/HEAD/docs/screenshot_1_index.png', caption: 'Split view with big headings and a linked table of contents' },
+  { src: 'https://raw.githubusercontent.com/trane77/markdown-terminal-editor/HEAD/docs/screenshot_2_code.png', caption: 'Syntax-highlighted code blocks' },
+  { src: 'https://raw.githubusercontent.com/trane77/markdown-terminal-editor/HEAD/docs/screenshot_3_lists.png', caption: 'Nested lists, task lists and quotes' },
+  { src: 'https://raw.githubusercontent.com/trane77/markdown-terminal-editor/HEAD/docs/screenshot_4_images.png', caption: 'Real images on a sixel-capable terminal' },
+]} />
+
+## Highlights
+
+- **Scroll sync**: the preview keeps the cursor's line at the same height as the editor, even when headings or images take up more rows.
+- **Real rendering**: H1/H2 in block letters, bordered tables that wrap, GitHub alerts, footnotes, checkboxes.
+- **Images** via sixel, kitty or iTerm2 graphics, with a half-block fallback.
+- **Safe with untrusted files**: control characters are neutralized, so a document can't send escape sequences to your terminal.
+- **Six interface languages**, picked from your locale.

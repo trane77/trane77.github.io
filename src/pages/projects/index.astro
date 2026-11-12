@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Projects">
+  <h1 class="text-4xl font-bold">Projects</h1>
+  <p class="mt-2 text-zinc-600 dark:text-zinc-400">Personal projects, all open source on <a class="text-accent" href="https://github.com/trane77">GitHub</a>.</p>
+  <div class="mt-10 grid gap-6 sm:grid-cols-2">
+    {projects.map((p) => <ProjectCard project={p} />)}
+  </div>
+</Base>

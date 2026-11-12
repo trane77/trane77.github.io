@@ -1,0 +1,33 @@
+---
+title: Orca Versioning
+description: Git-style version control for OrcaSlicer projects, with diff, branches, tags and restore.
+repo: trane77/orca-versioning-plugin
+tags: [Python, Git, 3D printing]
+order: 2
+---
+import VersionCompare from '../../components/VersionCompare';
+
+An OrcaSlicer plugin that saves a version (a git commit) every time you **export the G-code** or **send it to the printer**.
+Plain slicing never creates a version, and your project file is never touched.
+
+## What's in a version
+
+- `settings.ini`: every resolved setting (print, filament, printer), one per line, so diffs are readable.
+- The 3MF metadata: per-object overrides, pauses and color changes, layer height profiles.
+- Mesh hashes and a readable summary of objects, positions and scale.
+- A full copy of the project, **unsaved changes included**, so any version can be restored.
+
+Each plate has its own history (branch `plate-<n>`), so editing plate 2 doesn't create a version of plate 1.
+
+## Try the comparison
+
+The Versions tab shows only what changed between two exports: ▲ higher, ▼ lower, ● changed.
+Click two versions below:
+
+<VersionCompare client:visible />
+
+## How it works
+
+Export and print triggers arrive on worker threads, but OrcaSlicer only allows snapshotting the project from the UI thread.
+The plugin queues the request and bounces it through a hidden panel whose message handler runs on the UI thread.
+If the content matches the last commit, nothing is saved, so export + send produce a single version.

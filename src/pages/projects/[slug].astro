@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getRepo } from '../../lib/github';
+
+export async function getStaticPaths() {
+  return (await getCollection('projects')).map((p) => ({ params: { slug: p.id }, props: { project: p } }));
+}
+const { project } = Astro.props;
+const { title, description, cover, tags, repo } = project.data;
+const { Content } = await render(project);
+const info = await getRepo(repo);
+const repoUrl = info?.url ?? `https://github.com/${repo}`;
+---
+<Base title={title} description={description}>
+  <a href="/projects/" class="text-sm text-zinc-500 hover:text-accent">← Projects</a>
+  <h1 class="mt-4 text-4xl font-bold" transition:name={`title-${project.id}`}>{title}</h1>
+  <p class="mt-2 text-lg text-zinc-600 dark:text-zinc-400">{description}</p>
+  <div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+    <a href={repoUrl} class="rounded-full bg-accent text-white px-4 py-1.5 hover:opacity-90">View on GitHub</a>
+    {info?.language && <span class="text-zinc-500">{info.language}</span>}
+    {info && <span class="text-zinc-500">★ {info.stars}</span>}
+    {info && <span class="text-zinc-500">Updated {new Date(info.updated).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}</span>}
+    {tags.map((t) => <span class="rounded-full bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-xs">{t}</span>)}
+  </div>
+  {cover
+    ? <img src={cover} alt="" class="mt-8 w-full rounded-2xl" transition:name={`cover-${project.id}`} />
+    : <div class="mt-8 h-40 rounded-2xl bg-gradient-to-br from-accent/30 to-fuchsia-500/20" transition:name={`cover-${project.id}`} />}
+  <article class="prose prose-zinc dark:prose-invert prose-code:before:content-none prose-code:after:content-none max-w-none mt-10">
+    <Content />
+  </article>
+</Base>

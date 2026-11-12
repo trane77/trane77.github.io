@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order).slice(0, 4);
+const studies = (await getCollection('studies')).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
+---
+<Base>
+  <Hero client:load />
+
+  <section class="mt-8">
+    <div class="flex items-baseline justify-between">
+      <h2 class="text-2xl font-bold">Featured projects</h2>
+      <a href="/projects/" class="text-sm text-accent">All projects →</a>
+    </div>
+    <div class="mt-6 grid gap-6 sm:grid-cols-2">
+      {projects.map((p) => <ProjectCard project={p} />)}
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <div class="flex items-baseline justify-between">
+      <h2 class="text-2xl font-bold">Latest studies</h2>
+      <a href="/studies/" class="text-sm text-accent">All studies →</a>
+    </div>
+    <ul class="mt-6 divide-y divide-zinc-200 dark:divide-zinc-800">
+      {studies.map((s) => (
+        <li><a href={`/studies/${s.id}/`} class="block py-4 hover:text-accent">
+          <span class="font-medium">{s.data.title}</span>
+          <span class="block text-sm text-zinc-500">{s.data.description}</span>
+        </a></li>
+      ))}
+    </ul>
+  </section>
+</Base>

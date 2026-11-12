@@ -1,0 +1,48 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+
+interface Props { title?: string; description?: string }
+const { title, description = 'Federico Ricchiuto — full-stack developer. Projects, studies and CV.' } = Astro.props;
+const fullTitle = title ? `${title} · Federico Ricchiuto` : 'Federico Ricchiuto';
+const nav = [
+  ['/projects/', 'Projects'],
+  ['/studies/', 'Studies'],
+  ['/cv/', 'CV'],
+];
+const path = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+    <title>{fullTitle}</title>
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <header class="sticky top-0 z-10 backdrop-blur border-b border-zinc-200/60 dark:border-zinc-800/60" transition:persist>
+      <nav class="mx-auto max-w-5xl px-4 h-14 flex items-center justify-between">
+        <a href="/" class="font-bold tracking-tight">FR<span class="text-accent">.</span></a>
+        <ul class="flex gap-6 text-sm">
+          {nav.map(([href, label]) => (
+            <li>
+              <a href={href} class:list={['hover:text-accent transition-colors', path.startsWith(href) && 'text-accent font-medium']}>{label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+    <main class="flex-1 mx-auto w-full max-w-5xl px-4 py-12" transition:animate="slide">
+      <slot />
+    </main>
+    <footer class="mx-auto max-w-5xl w-full px-4 py-8 text-sm text-zinc-500 flex justify-between">
+      <span>© {new Date().getFullYear()} Federico Ricchiuto</span>
+      <a href="https://github.com/trane77" class="hover:text-accent">GitHub</a>
+    </footer>
+  </body>
+</html>

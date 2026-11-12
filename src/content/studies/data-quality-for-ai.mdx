@@ -1,0 +1,55 @@
+---
+title: Garbage in, model out — why data collection decides what AI learns
+description: An interactive look at how mislabeled and unrepresentative data quietly degrade a model.
+date: 2026-11-12
+tags: [AI, Data]
+---
+import DataQualityDemo from '../../components/DataQualityDemo';
+
+A model is a compressed summary of the data it was trained on. It has no other source of truth.
+If the data is wrong, incomplete or skewed, the model learns exactly that, and it does so confidently.
+
+This makes **data collection** the most important design decision in an AI system, even though it usually
+gets less attention than the choice of model.
+
+## The setup
+
+Below there are two kinds of examples, blue and orange, that overlap a little. A simple classifier
+(7-nearest-neighbours) learns to separate them. The shaded background is what the model predicts for each region.
+The accuracy is always measured on a **clean, representative** test set, the data the model will meet in the real world.
+
+## Defect 1: wrong labels
+
+Labels come from people, heuristics or other systems, and all of them make mistakes. Move the slider and watch
+the boundary become ragged: the model starts carving small islands around the wrong examples.
+
+<DataQualityDemo client:visible show="noise" />
+
+A few percent of noise is tolerated; after that, accuracy drops fast. Two things make this worse in practice:
+noise is rarely random (the hard cases are the ones mislabeled most often), and you usually can't see it.
+
+## Defect 2: unrepresentative sampling
+
+Now the labels are correct, but the collection process misses some cases: orange examples in the upper half
+were harder to collect, so fewer of them made it into the dataset. Nothing in the data looks *wrong*,
+yet the model moves the boundary to cover the gap with the wrong class.
+
+<DataQualityDemo client:visible show="bias" />
+
+This is how real systems end up working worse for groups, places or conditions that were under-represented when the data was gathered.
+Overall accuracy can stay deceptively high while one region of the problem is badly served.
+
+## Both at once
+
+<DataQualityDemo client:visible />
+
+## Practical checklist
+
+- **Write down what the data must represent** before collecting it: which users, conditions, edge cases.
+- **Measure label quality**: have a sample labeled twice and look at the disagreement.
+- **Record how each example was collected** (source, date, tool, annotator), so problems can be traced later.
+- **Check coverage per segment**, not just in total.
+- **Keep a test set that reflects reality**, collected separately from the training data.
+- **Prefer fewer, correct examples** over many noisy ones.
+
+More data does not fix bad data. It just makes the model more sure of what it learned.

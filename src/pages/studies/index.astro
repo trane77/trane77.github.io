@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const studies = (await getCollection('studies')).sort((a, b) => +b.data.date - +a.data.date);
+---
+<Base title="Studies">
+  <h1 class="text-4xl font-bold">Studies</h1>
+  <p class="mt-2 text-zinc-600 dark:text-zinc-400">Notes and interactive explorations on data, AI and software.</p>
+  <ul class="mt-10 space-y-6">
+    {studies.map((s) => (
+      <li>
+        <a href={`/studies/${s.id}/`} class="group block rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 hover:border-accent transition">
+          <time class="text-xs text-zinc-500">{s.data.date.toLocaleDateString('en-GB', { dateStyle: 'long' })}</time>
+          <h2 class="mt-1 text-xl font-semibold group-hover:text-accent" transition:name={`study-${s.id}`}>{s.data.title}</h2>
+          <p class="mt-1 text-zinc-600 dark:text-zinc-400">{s.data.description}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>

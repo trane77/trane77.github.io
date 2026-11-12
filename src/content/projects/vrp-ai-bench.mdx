@@ -1,0 +1,41 @@
+---
+title: VRP AI Bench
+description: A reproducible lab to test whether learned search beats classical methods at routing urban delivery fleets.
+repo: trane77/vrp-ai-bench
+tags: [Python, React, Optimization, ML]
+order: 3
+---
+import RouteSearchDemo from '../../components/RouteSearchDemo';
+
+Planning routes for a small fleet of delivery vans is a classic hard problem: every stop must be visited once,
+within its time window, without exceeding capacity or driver hours, while keeping time and fuel low.
+
+VRP AI Bench is a **research laboratory** built to answer one question honestly:
+*does a learned search policy find better routes, or find them faster, than classical heuristics at the same time budget?*
+
+## Watch a search improve a plan
+
+The engine starts from a quick feasible plan and improves it move by move, and every change is recorded so the search can be replayed.
+Here is a much simpler version you can run in the browser. Press **Run search**.
+
+<RouteSearchDemo client:visible />
+
+In the real engine the moves are relocation, swap and reversal across routes, every candidate is validated against time windows and capacity,
+and the objective weighs travel time against estimated fuel. The learned policy decides **which move to try next**: it doesn't
+replace the solver, it reorders its choices.
+
+## What's in the lab
+
+- **Real cities, real roads**: Bologna and Modena on a frozen OpenStreetMap snapshot served by OSRM, including alternative road paths.
+- **Realistic constraints**: 1–5 vans with different capacities, appointment time windows, mandatory driver breaks, mixed pickups and deliveries.
+- **Fair comparisons**: the same move operators, evaluator and budgets for classical and learned search, plus OR-Tools as an independent reference. Train/validation/test sets and seeds are frozen before evaluation.
+- **Learned policy**: a small neural network (38 features → 64 → 32 → 2) that ranks candidate moves, trained on recorded searches.
+- **Robustness**: Monte Carlo evaluation of stochastic travel times, and traffic/emissions microsimulation (SUMO) to calibrate the fuel model.
+- **Observable search**: a React client with an interactive map, per-van timelines, comparison charts and replay of every recorded move.
+- **Remote compute**: the engine runs as an authenticated HTTPS/WebSocket service on a separate machine on the local network.
+
+## Being honest about results
+
+The protocol is strict on purpose: no optimality claims from heuristics, time-outs reported as *unknown* rather than dropped,
+training cost counted separately, and negative results treated as valid findings.
+So far the infrastructure and a 336-case held-out campaign are complete, and **no measured AI advantage is claimed**.
