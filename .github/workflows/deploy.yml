@@ -26,6 +26,8 @@ jobs:
           curl -sSL -o 'cv/fonts/SourceSans3[wght].ttf' 'https://github.com/google/fonts/raw/main/ofl/sourcesans3/SourceSans3%5Bwght%5D.ttf'
           ./typst-x86_64-unknown-linux-musl/typst compile --font-path cv/fonts cv/cv.typ public/Federico_Ricchiuto_Resume.pdf
       - uses: withastro/action@v3
+        with:
+          node-version: 24 # Astro 7 needs Node >= 22
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
