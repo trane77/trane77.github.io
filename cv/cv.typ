@@ -133,7 +133,7 @@
 ]
 
 // ---------- 8. PIEDE: ISTRUZIONE, LINGUE, INTERESSI ----------
-#v(10pt)
+#v(2pt)
 #grid(
   columns: (1.25fr, 1fr, 1fr),
   column-gutter: 20pt,

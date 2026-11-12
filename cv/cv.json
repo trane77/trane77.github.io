@@ -14,7 +14,7 @@
     "Frontend": ["TypeScript", "JavaScript", "Vue.js", "React", "Angular"],
     "Databases & ORM": ["MySQL", "PostgreSQL", "MongoDB", "Redis", "Doctrine", "Eloquent"],
     "Cloud & CI/CD": ["AWS", "Google Cloud Platform", "Docker", "Terraform", "GitHub Actions", "Jenkins"],
-    "Practices": ["REST API design", "Test Driven Development", "Microservices", "Agile Development", "Git Flow", "Claude Code", "OpenAI Codex", "Google Antigravity"],
+    "Practices": ["REST API design", "TDD", "Microservices", "Agile", "Git Flow", "Claude Code", "OpenAI Codex", "Google Antigravity"],
     "Additional": ["Spring Security", "Spring Data - Hibernate", "Flutter", "Android", "iOS"]
   },
   "experience": [
